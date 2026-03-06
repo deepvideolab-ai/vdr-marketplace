@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "vdr-video-research": {
+      "type": "http",
+      "url": "${VDR_VIDEO_RESEARCH_URL:-https://mcp.videodeepresearch.com}/mcp",
+      "headers": {
+        "Authorization": "Bearer ${VDR_MCP_TOKEN}"
+      }
+    }
+  }
+}

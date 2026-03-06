@@ -1,0 +1,19 @@
+{
+  "name": "vdr-tools",
+  "owner": { "name": "DeepVideoLab.ai" },
+  "metadata": {
+    "description": "Video Deep Research MCP server plugins for Claude Code",
+    "version": "1.0.0",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "vdr-video-research",
+      "source": "vdr-video-research",
+      "description": "Search and analyze 5M+ videos and ads with AI-powered deep research",
+      "version": "1.0.0",
+      "keywords": ["video", "research", "marketing", "ads"],
+      "category": "research"
+    }
+  ]
+}
