@@ -2,24 +2,9 @@
   "name": "vdr-video-research",
   "description": "Search and analyze 5M+ videos and ads with AI-powered deep research",
   "version": "1.0.0",
-  "author": "DeepVideoLab.ai",
-  "skills": [
-    {
-      "name": "video-search",
-      "description": "Search and analyze videos from a corpus of 5M+ videos using natural language queries",
-      "file": "skills/video-search/SKILL.md"
-    },
-    {
-      "name": "ad-analysis",
-      "description": "Search and analyze ad videos for marketing insights, creative strategies, and competitive analysis",
-      "file": "skills/ad-analysis/SKILL.md"
-    }
-  ],
-  "commands": [
-    {
-      "name": "setup",
-      "description": "Configure VDR Video Research plugin authentication",
-      "file": "commands/setup.md"
-    }
-  ]
+  "author": {
+    "name": "DeepVideoLab.ai"
+  },
+  "skills": "./skills/",
+  "commands": ["./commands/setup.md"]
 }
