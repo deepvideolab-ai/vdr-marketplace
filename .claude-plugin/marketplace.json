@@ -1,18 +1,16 @@
 {
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "vdr-tools",
-  "owner": { "name": "DeepVideoLab.ai" },
-  "metadata": {
-    "description": "Video Deep Research MCP server plugins for Claude Code",
-    "version": "1.0.0",
-    "pluginRoot": "./plugins"
+  "description": "Video Deep Research MCP server plugins for Claude Code",
+  "owner": {
+    "name": "DeepVideoLab.ai"
   },
   "plugins": [
     {
       "name": "vdr-video-research",
-      "source": "vdr-video-research",
       "description": "Search and analyze 5M+ videos and ads with AI-powered deep research",
       "version": "1.0.0",
-      "keywords": ["video", "research", "marketing", "ads"],
+      "source": "./plugins/vdr-video-research",
       "category": "research"
     }
   ]
