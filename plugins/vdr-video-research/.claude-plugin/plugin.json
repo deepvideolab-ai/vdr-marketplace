@@ -5,6 +5,6 @@
   "author": {
     "name": "DeepVideoLab.ai"
   },
-  "skills": "./skills/",
+  "skills": ["./skills/"],
   "commands": ["./commands/setup.md"]
 }
