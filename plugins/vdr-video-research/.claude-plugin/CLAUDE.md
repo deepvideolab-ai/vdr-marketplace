@@ -7,6 +7,8 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #3897 | 4:53 PM | 🔵 | Current Plugin Manifest Structure Investigation | ~307 |
+| #3895 | 4:51 PM | 🔴 | Added skills and commands configuration to vdr-video-research Claude plugin | ~246 |
 | #3891 | 4:46 PM | 🔵 | vdr-video-research plugin manifest structure identified | ~325 |
 | #3888 | 4:43 PM | 🔵 | vdr-video-research plugin manifest structure identified with schema violations | ~352 |
 </claude-mem-context>

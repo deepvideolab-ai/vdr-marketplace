@@ -32,11 +32,17 @@ Ask Claude Code to search videos:
 Search for videos about electric vehicle marketing strategies
 ```
 
+Or run the setup command to configure authentication:
+
+```
+/vdr-video-research:setup
+```
+
 Or use the skills directly:
 
 ```
-/video-search Find videos about AI coding assistants
-/ad-analysis What creative strategies are beauty brands using?
+/vdr-video-research:video-search Find videos about AI coding assistants
+/vdr-video-research:ad-analysis What creative strategies are beauty brands using?
 ```
 
 ## Available Plugins
