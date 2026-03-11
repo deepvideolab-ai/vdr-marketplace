@@ -29,7 +29,7 @@ export VDR_MCP_TOKEN='your-api-token-here'
 2. Install the plugin:
 
 ```
-/plugin install vdr-video-research@vdr-tools
+/plugin install vdr-video-research@vdr-plugin
 ```
 
 Or run the setup command after installation:

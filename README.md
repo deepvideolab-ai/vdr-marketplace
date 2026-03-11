@@ -7,13 +7,13 @@ Claude Code plugin marketplace for [Video Deep Research](https://videodeepresear
 ### 1. Add the marketplace
 
 ```
-/plugin marketplace add deepvideolab-ai/vdr-plugins
+/plugin marketplace add deepvideolab-ai/vdr-marketplace
 ```
 
 ### 2. Install the plugin
 
 ```
-/plugin install vdr-video-research@vdr-tools
+/plugin install vdr-video-research@vdr-plugin
 ```
 
 ### 3. Set your API token

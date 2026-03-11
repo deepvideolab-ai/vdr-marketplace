@@ -1,6 +1,6 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "vdr-tools",
+  "name": "vdr-plugin",
   "description": "Video Deep Research MCP server plugins for Claude Code",
   "owner": {
     "name": "DeepVideoLab.ai"
