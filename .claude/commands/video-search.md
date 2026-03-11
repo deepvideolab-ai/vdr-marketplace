@@ -10,8 +10,8 @@ Search and analyze videos from a 5M+ video library using AI-powered deep researc
 
 Before calling any tools, check if the `talk_to_1m` tool is available. If it is not available, the plugin is not installed. Guide the user to install it:
 
-1. Add the marketplace: `claude plugin marketplace add deepvideolab-ai/vdr-plugins`
-2. Install the plugin: `claude plugin install vdr-video-research@vdr-tools`
+1. Add the marketplace: `claude plugin marketplace add deepvideolab-ai/vdr-marketplace`
+2. Install the plugin: `claude plugin install vdr-video-research@vdr-plugin`
 3. Restart Claude Code to load the plugin
 
 Then check if `VDR_MCP_TOKEN` is set using `env | grep VDR_MCP_TOKEN`. If not set, tell the user to set it:
@@ -50,9 +50,9 @@ Only proceed with the search after both the plugin and token are confirmed.
 
 ## Install
 
-Part of the [VDR Video Research](https://github.com/deepvideolab-ai/vdr-plugins) plugin:
+Part of the [VDR Video Research](https://github.com/deepvideolab-ai/vdr-marketplace) plugin:
 
 ```
-/plugin marketplace add deepvideolab-ai/vdr-plugins
-/plugin install vdr-video-research@vdr-tools
+/plugin marketplace add deepvideolab-ai/vdr-marketplace
+/plugin install vdr-video-research@vdr-plugin
 ```
