@@ -1,4 +1,4 @@
-# Video Search
+# Talk to 1M
 
 Search and analyze videos from a corpus of 5M+ videos using natural language queries.
 

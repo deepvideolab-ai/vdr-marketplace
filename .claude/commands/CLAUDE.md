@@ -7,5 +7,5 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #4076 | 6:45 PM | ✅ | Plugin installation command updated to conversational format | ~245 |
+| #4085 | 8:26 PM | 🔵 | Authentication-related documentation spans multiple files in marketplace | ~266 |
 </claude-mem-context>

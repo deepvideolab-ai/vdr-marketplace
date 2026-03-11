@@ -1,19 +1,31 @@
-# VDR Plugins - Video Deep Research for Claude Code
+# VDR Plugins - Video Deep Research
 
-Claude Code plugin marketplace for [Video Deep Research](https://videodeepresearch.com) MCP servers. Search and analyze millions of videos and ads using AI-powered deep research directly from Claude Code.
+Plugin marketplace for [Video Deep Research](https://videodeepresearch.com) MCP servers. Search and analyze millions of videos and ads using AI-powered deep research.
 
-## Quick Start
+## Claude Desktop / Cowork (OAuth — recommended)
+
+1. Open **Settings > Connectors** in the Claude Desktop or Cowork app.
+2. Click **Add custom connector**.
+3. Enter the server URL: `https://mcp.videodeepresearch.com/mcp`
+4. Complete the OAuth sign-in flow when prompted.
+5. The VDR tools will appear automatically after authorization.
+
+No API keys or environment variables needed — Claude handles OAuth automatically.
+
+For the test environment, use: `https://mcp-test.videodeepresearch.com/mcp`
+
+## Claude Code CLI (API key)
 
 ### 1. Add the marketplace
 
 ```
-/plugin marketplace add deepvideolab-ai/vdr-marketplace
+claude plugin marketplace add deepvideolab-ai/vdr-marketplace
 ```
 
 ### 2. Install the plugin
 
 ```
-/plugin install vdr-video-research@vdr-plugin
+claude plugin install vdr-video-research@vdr-plugin
 ```
 
 ### 3. Set your API token
@@ -32,17 +44,11 @@ Ask Claude Code to search videos:
 Search for videos about electric vehicle marketing strategies
 ```
 
-Or run the setup command to configure authentication:
-
-```
-/vdr-video-research:setup
-```
-
 Or use the skills directly:
 
 ```
-/vdr-video-research:video-search Find videos about AI coding assistants
-/vdr-video-research:ad-analysis What creative strategies are beauty brands using?
+/vdr-video-research:talk-to-1M Find videos about AI coding assistants
+/vdr-video-research:talk-to-ads What creative strategies are beauty brands using?
 ```
 
 ## OpenClaw Setup
@@ -104,8 +110,8 @@ Download [`dist/vdr-mcporter.skill`](dist/vdr-mcporter.skill) from this repo and
 
 Say any of these in the OpenClaw TUI:
 
-- "Use VDR video-search: electric vehicle marketing strategies"
-- "Use VDR ad-analysis: What creative strategies are beauty brands using?"
+- "Use VDR talk-to-1M: electric vehicle marketing strategies"
+- "Use VDR talk-to-ads: What creative strategies are beauty brands using?"
 - "Run VDR health check"
 
 ### Common gotchas
@@ -113,6 +119,55 @@ Say any of these in the OpenClaw TUI:
 - **Works elsewhere but not in OpenClaw**: You configured a different mcporter.json. Fix by writing the VDR entry into `~/.openclaw/workspace/config/mcporter.json` (as above).
 - **Don't use stdio mode**: A stdio `vdr-video-research` entry that runs mcporter will loop / "connection closed". Use HTTP to `https://mcp.videodeepresearch.com/mcp`.
 - **Shell access in TUI**: Optional and gated by a one-time prompt per session. Not needed if mcporter config is correct.
+
+## Using the Test Site
+
+To point any client at the **test** environment instead of production, replace the server URL with `https://mcp-test.videodeepresearch.com/mcp`.
+
+### Claude Desktop / Cowork (OAuth)
+
+1. Open **Settings > Connectors**.
+2. Add (or edit) the custom connector and enter: `https://mcp-test.videodeepresearch.com/mcp`
+3. Complete the OAuth sign-in flow.
+
+### Claude Code CLI (API key)
+
+Set both environment variables before launching Claude Code:
+
+```bash
+export VDR_VIDEO_RESEARCH_URL='https://mcp-test.videodeepresearch.com'
+export VDR_MCP_TOKEN='your-test-api-token'
+```
+
+Then install (or reinstall) the plugin as usual:
+
+```
+claude plugin install vdr-video-research@vdr-plugin
+```
+
+### OpenClaw (mcporter)
+
+Configure mcporter with the test URL:
+
+```bash
+export VDR_MCP_TOKEN="YOUR_TEST_TOKEN"
+
+mcporter config add vdr-video-research \
+  --url "https://mcp-test.videodeepresearch.com/mcp" \
+  --header "Authorization=Bearer $VDR_MCP_TOKEN" \
+  --description "Video Deep Research MCP – TEST" \
+  --persist "$HOME/.openclaw/workspace/config/mcporter.json"
+```
+
+### Switching back to production
+
+Unset the URL override (or remove it from your shell profile) so the default production URL is used:
+
+```bash
+unset VDR_VIDEO_RESEARCH_URL
+```
+
+For OpenClaw, re-run the `mcporter config add` command with the production URL (`https://mcp.videodeepresearch.com/mcp`).
 
 ## Available Plugins
 
@@ -124,7 +179,7 @@ Say any of these in the OpenClaw TUI:
 
 | Environment Variable | Required | Description |
 |---------------------|----------|-------------|
-| `VDR_MCP_TOKEN` | Yes | Bearer token for API authentication |
+| `VDR_MCP_TOKEN` | CLI only | Bearer token for API key authentication (not needed for OAuth) |
 | `VDR_VIDEO_RESEARCH_URL` | No | Server URL override (defaults to `https://mcp.videodeepresearch.com`) |
 
 ## License
