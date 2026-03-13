@@ -76,6 +76,73 @@ Or use the skills directly:
 /vdr-video-research:talk-to-ads What creative strategies are beauty brands using?
 ```
 
+## MCP Server (Direct Setup)
+
+If you want to add the VDR MCP server directly without the plugin marketplace, follow these steps.
+
+### 1. Create an API Key
+
+Go to the VDR dashboard and create a new API key with the required permissions:
+
+<https://app.videodeepresearch.com/api-keys>
+
+### 2. Configure Environment Variable
+
+On macOS or Linux, open a terminal and run:
+
+```bash
+export VDR_MCP_TOKEN='YOUR_API_KEY'
+```
+
+### 3. Add MCP Server
+
+**Claude Code:**
+
+**Option A:** Add `VDR_MCP_TOKEN` to your shell profile (`~/.bashrc` or `~/.zshrc`), then run:
+
+```bash
+claude mcp add \
+  --transport http \
+  vdr-mcp \
+  https://mcp.videodeepresearch.com/mcp \
+  --header "Authorization: Bearer $VDR_MCP_TOKEN"
+```
+
+**Option B:** Pass your API token directly in the command:
+
+```bash
+claude mcp add \
+  --transport http \
+  vdr-mcp \
+  https://mcp.videodeepresearch.com/mcp \
+  --header "Authorization: Bearer <your-api-token-here>"
+```
+
+**Codex:**
+
+Set `VDR_MCP_TOKEN` in your shell profile (`~/.bashrc` or `~/.zshrc`), then run:
+
+```bash
+codex mcp add \
+  --url https://mcp.videodeepresearch.com/mcp \
+  VDR_MCP_TOKEN \
+  vdr-mcp
+```
+
+### 4. Verify MCP Connectivity
+
+Check whether the MCP server has been successfully added:
+
+```bash
+claude mcp list
+```
+
+or
+
+```bash
+codex mcp list
+```
+
 ## OpenClaw Setup
 
 If you use [OpenClaw](https://openclaw.org), follow these steps to use VDR video-research via mcporter.
