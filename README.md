@@ -4,15 +4,24 @@ Plugin marketplace for [Video Deep Research](https://videodeepresearch.com) MCP 
 
 ## Claude Desktop / Cowork (OAuth — recommended)
 
-1. Open **Settings > Connectors** in the Claude Desktop or Cowork app.
-2. Click **Add custom connector**.
-3. Enter the server URL: `https://mcp.videodeepresearch.com/mcp`
-4. Complete the OAuth sign-in flow when prompted.
-5. The VDR tools will appear automatically after authorization.
+1. Open the **Claude Desktop application**.
+2. Click **Customize** from left panel.
+3. Click **Connectors**.
+4. Click **+** and select **Add custom connector**.
+5. Input a connector name and enter the server URL: `https://mcp.videodeepresearch.com/mcp`
+
+<img src="ClaudeConnectorPic1.png" alt="Add custom connector" width="600">
+
+6. Click **VDR Connector** and click **Connect** button.
+
+<img src="ClaudeConnectorPic2.png" alt="VDR Connector" width="600">
+
+7. Complete the OAuth sign-in flow when prompted. (Make sure you have logged into your Claude.ai account.)
+8. The VDR Connector will appear connected.
+
+The setup on [claude.ai](https://claude.ai) is similar — go to **Settings → Connectors → Add custom connector** and enter the same server URL.
 
 No API keys or environment variables needed — Claude handles OAuth automatically.
-
-For the test environment, use: `https://mcp-test.videodeepresearch.com/mcp`
 
 ## Claude Code CLI (API key)
 
@@ -30,10 +39,26 @@ claude plugin install vdr-video-research@vdr-plugin
 
 ### 3. Set your API token
 
-Add to your shell profile (`~/.bashrc` or `~/.zshrc`):
+**Option A:** Add to your shell profile (`~/.bashrc` or `~/.zshrc`):
 
 ```bash
 export VDR_MCP_TOKEN='your-api-token-here'
+```
+
+**Option B:** Edit the installed plugin config at `~/.claude/plugins/vdr-video-research/.mcp.json` and replace `your-api-token-here` with your actual API token:
+
+```json
+{
+  "mcpServers": {
+    "vdr-video-research": {
+      "type": "http",
+      "url": "https://mcp.videodeepresearch.com/mcp",
+      "headers": {
+        "Authorization": "Bearer your-api-token-here"
+      }
+    }
+  }
+}
 ```
 
 ### 4. Use it
@@ -65,14 +90,28 @@ If you use [OpenClaw](https://openclaw.org), follow these steps to use VDR video
 
 ### 1. Configure mcporter for OpenClaw
 
-OpenClaw uses its own mcporter config at `~/.openclaw/workspace/config/mcporter.json`. Add the VDR server:
+OpenClaw uses its own mcporter config at `~/.openclaw/workspace/config/mcporter.json`.
+
+**Option A:** Set the token as an environment variable in your shell profile (`~/.bashrc` or `~/.zshrc`), then reference it in the mcporter command:
 
 ```bash
-export VDR_MCP_TOKEN="YOUR_TOKEN"
+export VDR_MCP_TOKEN='your-api-token-here'
+```
 
+```bash
 mcporter config add vdr-video-research \
   --url "https://mcp.videodeepresearch.com/mcp" \
   --header "Authorization=Bearer $VDR_MCP_TOKEN" \
+  --description "Video Deep Research MCP (HTTP, bearer auth)" \
+  --persist "$HOME/.openclaw/workspace/config/mcporter.json"
+```
+
+**Option B:** Pass your API token directly in the mcporter command:
+
+```bash
+mcporter config add vdr-video-research \
+  --url "https://mcp.videodeepresearch.com/mcp" \
+  --header "Authorization=Bearer <your-api-token-here>" \
   --description "Video Deep Research MCP (HTTP, bearer auth)" \
   --persist "$HOME/.openclaw/workspace/config/mcporter.json"
 ```
@@ -120,67 +159,17 @@ Say any of these in the OpenClaw TUI:
 - **Don't use stdio mode**: A stdio `vdr-video-research` entry that runs mcporter will loop / "connection closed". Use HTTP to `https://mcp.videodeepresearch.com/mcp`.
 - **Shell access in TUI**: Optional and gated by a one-time prompt per session. Not needed if mcporter config is correct.
 
-## Using the Test Site
-
-To point any client at the **test** environment instead of production, replace the server URL with `https://mcp-test.videodeepresearch.com/mcp`.
-
-### Claude Desktop / Cowork (OAuth)
-
-1. Open **Settings > Connectors**.
-2. Add (or edit) the custom connector and enter: `https://mcp-test.videodeepresearch.com/mcp`
-3. Complete the OAuth sign-in flow.
-
-### Claude Code CLI (API key)
-
-Set both environment variables before launching Claude Code:
-
-```bash
-export VDR_VIDEO_RESEARCH_URL='https://mcp-test.videodeepresearch.com'
-export VDR_MCP_TOKEN='your-test-api-token'
-```
-
-Then install (or reinstall) the plugin as usual:
-
-```
-claude plugin install vdr-video-research@vdr-plugin
-```
-
-### OpenClaw (mcporter)
-
-Configure mcporter with the test URL:
-
-```bash
-export VDR_MCP_TOKEN="YOUR_TEST_TOKEN"
-
-mcporter config add vdr-video-research \
-  --url "https://mcp-test.videodeepresearch.com/mcp" \
-  --header "Authorization=Bearer $VDR_MCP_TOKEN" \
-  --description "Video Deep Research MCP – TEST" \
-  --persist "$HOME/.openclaw/workspace/config/mcporter.json"
-```
-
-### Switching back to production
-
-Unset the URL override (or remove it from your shell profile) so the default production URL is used:
-
-```bash
-unset VDR_VIDEO_RESEARCH_URL
-```
-
-For OpenClaw, re-run the `mcporter config add` command with the production URL (`https://mcp.videodeepresearch.com/mcp`).
-
 ## Available Plugins
 
 | Plugin | Description |
 |--------|-------------|
-| [vdr-video-research](plugins/vdr-video-research/) | Search and analyze 5M+ videos and ads with AI-powered deep research |
+| [vdr-plugin](plugins/vdr-video-research/) | Search and analyze 5M+ videos and ads with AI-powered deep research |
 
 ## Configuration
 
 | Environment Variable | Required | Description |
 |---------------------|----------|-------------|
-| `VDR_MCP_TOKEN` | CLI only | Bearer token for API key authentication (not needed for OAuth) |
-| `VDR_VIDEO_RESEARCH_URL` | No | Server URL override (defaults to `https://mcp.videodeepresearch.com`) |
+| `VDR_MCP_TOKEN` | Optional and CLI only | Bearer token for API key authentication (not needed for OAuth) |
 
 ## License
 
