@@ -1,4 +1,4 @@
-# Ad Analysis
+# Talk to Ads
 
 Search and analyze ad videos for marketing insights, creative strategies, and competitive analysis.
 

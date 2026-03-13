@@ -2,7 +2,17 @@
 
 Configure authentication for the VDR Video Research plugin.
 
-## Steps
+## Claude Desktop App (OAuth — recommended)
+
+1. Open **Settings > Connectors** in the Claude Desktop App.
+2. Click **Add custom connector**.
+3. Enter the server URL: `https://mcp.videodeepresearch.com/mcp`
+4. Complete the OAuth sign-in flow when prompted.
+5. The VDR tools will appear automatically after authorization.
+
+No environment variables or tokens are needed — Claude Desktop handles OAuth automatically.
+
+## Claude Code CLI (API key)
 
 1. **Get your API token** from your VDR administrator or the DeepVideoLab.ai dashboard.
 
@@ -14,7 +24,13 @@ export VDR_MCP_TOKEN='your-api-token-here'
 
 3. **Reload your shell** or run `source ~/.bashrc` (or `~/.zshrc`).
 
-4. **Verify the connection** by asking Claude Code to run the `health` tool:
+4. **Install the plugin**:
+
+```
+claude plugin install vdr-video-research@vdr-plugin
+```
+
+5. **Verify the connection** by asking Claude Code to run the `health` tool:
 
 ```
 Use the health tool from vdr-video-research to check the server status.
@@ -30,6 +46,6 @@ export VDR_VIDEO_RESEARCH_URL='https://your-custom-server.example.com'
 
 ## Troubleshooting
 
-- **401 Unauthorized**: Check that `VDR_MCP_TOKEN` is set and the token is valid/not expired.
+- **401 Unauthorized**: Check that `VDR_MCP_TOKEN` is set and the token is valid/not expired, or re-authorize via Claude Desktop OAuth.
 - **Connection refused**: Check that the server URL is correct and the server is running.
 - **Timeout**: The video analysis tools can take 20-60 seconds. This is normal for large corpus searches.
