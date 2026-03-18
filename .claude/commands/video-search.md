@@ -37,6 +37,7 @@ Only proceed with the search after both the plugin and token are confirmed.
 | `talk_to_ads` | Search and analyze advertising/commercial video content |
 | `deep_research` | In-depth multi-step research across video library |
 | `direct_ask` | Direct questions without search context |
+| `videoclaw` | Query the video database (search, count, lookup by ID/creator/URL) |
 
 ## Usage
 

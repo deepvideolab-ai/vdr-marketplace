@@ -23,12 +23,14 @@ For the test environment, use: `https://mcp-test.videodeepresearch.com/mcp`
 | `direct_ask` | Analyze specific videos by their platform IDs |
 | `deep_research` | Full async analysis pipeline (submit job, poll for results) |
 | `deep_research_status` | Poll for deep_research job completion |
+| `videoclaw` | Query the video database (search, count, lookup by ID/creator/URL) |
 | `health` | Server health check |
 
 ## Skills
 
 - **talk-to-1M** - Search the video corpus using `talk_to_1m`
 - **talk-to-ads** - Analyze ad videos using `talk_to_ads`
+- **videoclaw** - Query the video database using `videoclaw`
 
 ## Claude Code CLI Setup (API key)
 
